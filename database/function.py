@@ -21,8 +21,8 @@ class DataBaseFunc():
         """Добавляет главного администратора при инициализации базы данных"""
         user = session.query(User).filter_by(id=MAIN_ADMIN_ID).first()
         if user == None:
-            user = User(id=MAIN_ADMIN_ID, username="oxybes",
-                        is_admin=True, lng='Russian', course_id=1, chat_id=454709994, is_register=True)
+            user = User(id=MAIN_ADMIN_ID, username="cyberperu",
+                        is_admin=True, lng='Peru', course_id=1, chat_id=1537414759, is_register=True)
             session.add(user)
             session.commit()
             return
