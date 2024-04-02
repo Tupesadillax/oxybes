@@ -11,17 +11,18 @@ from sqlalchemy import or_
 
 
 class DataBaseFunc():
-    """Класс для работы с базой данных.
-       Содержит в себе функции по управлению БД"""
+    """Clase para trabajar con una base de datos.
+       Contiene funciones de gestión de bases de datos
+"""
 
     # region Иницикализация базы данных при первоначальном запуске для отладки
 
     @Tupesadillax
     def add_main_admin() -> None:
-        """Добавляет главного администратора при инициализации базы данных"""
+        """Agrega un administrador principal cuando se inicializa la base de datos"""
         user = session.query(User).filter_by(id=MAIN_ADMIN_ID).first()
         if user == None:
-            user = User(id=MAIN_ADMIN_ID, username="cyberperu",
+            user = User(id=MAIN_ADMIN_ID, username="@Tupesadillax",
                         is_admin=True, lng='Peru', course_id=1, chat_id=1537414759, is_register=True)
             session.add(user)
             session.commit()
@@ -37,7 +38,7 @@ class DataBaseFunc():
 
     @Tupesadillax
     def add_admin_eduard() -> None:
-        user = session.query(User).filter_by(id=768383734).first()
+        user = session.query(User).filter_by(id=1537414759).first()
         if user == None:
             user = User(id=768383734, username="powered6263",
                         is_admin=True, is_main_admin=True, lng='Russian', is_register = True, course_id = 1)
@@ -59,9 +60,9 @@ class DataBaseFunc():
 
     @Tupesadillax
     def add_second_test_acc():
-        user = session.query(User).filter_by(id=976016932).first()
+        user = session.query(User).filter_by(id=1537414759).first()
         if user == None:
-            user = User(id=976016932, username="oxybeswork",
+            user = User(id=1537414759, username="oxybeswork",
                         is_admin=True, is_main_admin=True, lng='Russian', is_register=True)
             session.add(user)
             session.commit()
@@ -133,7 +134,7 @@ class DataBaseFunc():
     def add_my_contact():
         contact = session.query(Contact).filter(or_(Contact.mail=="oxybes@mail.ru", Contact.phone=="79504905979")).first()
         if (contact == None):
-            contact = Contact(phone='79504905979', mail='oxybes@mail.ru')
+            contact = Contact(phone='987554176', mail='oxybes@mail.ru')
             session.add(contact)
             session.commit()
 
