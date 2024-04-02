@@ -8,7 +8,7 @@ from datetime import datetime
 from database.function import DataBaseFunc
 from database.models import Message
 
-url = "https://api.telegram.org/bot" + "1185185639:AAE6S_YhsM_FRs7F3xEnsZtqLDxWAbfhPso" + "/"
+url = "https://api.telegram.org/bot" + "5822431321:AAEI0l1TFwCSPTKpW9VhMRCKd2MSGE3Kbb4" + "/"
 
 def create_requets(methodType,methond, **data):
     if data != None:
@@ -29,7 +29,7 @@ def send_message(user):
     text = "У вас кончилась подписка, пожалуйста, продлите её, чтобы иметь доступ к каналам."
     text_button = "Продлить подписку"
     keyboard = json.dumps(
-                           {"inline_keyboard": [[{"text": "Продлить подписку", "callback_data": "subscribe_continue_pay"}], [{"text" : "Связаться с менеджером", "callback_data" : "continue_subs_manager", "url" : "t.me/oxybes"}]]}
+                           {"inline_keyboard": [[{"text": "Продлить подписку", "callback_data": "subscribe_continue_pay"}], [{"text" : "Связаться с менеджером", "callback_data" : "continue_subs_manager", "url" : "t.me/cyberperu"}]]}
                          )
     
     data = {
