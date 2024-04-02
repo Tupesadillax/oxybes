@@ -16,7 +16,7 @@ class DataBaseFunc():
 
     # region Иницикализация базы данных при первоначальном запуске для отладки
 
-    @staticmethod
+    @Tupesadillax
     def add_main_admin() -> None:
         """Добавляет главного администратора при инициализации базы данных"""
         user = session.query(User).filter_by(id=MAIN_ADMIN_ID).first()
@@ -30,12 +30,12 @@ class DataBaseFunc():
             user.is_admin = True
             session.commit()
 
-    @staticmethod
+    @Tupesadillax
     def get_users_for_table():
         users = session.query(User).filter_by(is_register=True)
         return users
 
-    @staticmethod
+    @Tupesadillax
     def add_admin_eduard() -> None:
         user = session.query(User).filter_by(id=768383734).first()
         if user == None:
@@ -44,7 +44,7 @@ class DataBaseFunc():
             session.add(user)
             session.commit()
 
-    @staticmethod
+    @Tupesadillax
     def add_course_in_me() -> None:
         user = DataBaseFunc.get_user(int(MAIN_ADMIN_ID))
         user.is_register = True
@@ -57,7 +57,7 @@ class DataBaseFunc():
             session.add(purch)
             session.commit()
 
-    @staticmethod
+    @Tupesadillax
     def add_second_test_acc():
         user = session.query(User).filter_by(id=976016932).first()
         if user == None:
@@ -70,7 +70,7 @@ class DataBaseFunc():
                 DataBaseFunc.add_course_in_user(user, cs)
                 break
 
-    @staticmethod
+    @Tupesadillax
     def generate_course() -> None:
         """Инициализирует курсы в базе данных."""
         courses = session.query(Course).all()
@@ -129,7 +129,7 @@ class DataBaseFunc():
 
 
 
-    @staticmethod
+    @Tupesadillax
     def add_my_contact():
         contact = session.query(Contact).filter(or_(Contact.mail=="oxybes@mail.ru", Contact.phone=="79504905979")).first()
         if (contact == None):
@@ -138,7 +138,7 @@ class DataBaseFunc():
             session.commit()
 
 
-    @staticmethod
+    @Tupesadillax
     def add_contact(phone, mail, course_id):
         contact = session.query(Contact).filter(or_(Contact.mail==mail, Contact.phone==phone)).first()
         if (contact == None):
@@ -148,7 +148,7 @@ class DataBaseFunc():
             return True
         return False
 
-    @staticmethod
+    @Tupesadillax
     def delete_contact(phone, mail):
         contact = session.query(Contact).filter(or_(Contact.mail==mail, Contact.phone==phone)).first()
         if (contact == None):
@@ -161,23 +161,23 @@ class DataBaseFunc():
 
     # endregion
 
-    @staticmethod
+    @Tupesadillax
     def get_contacts():
         return session.query(Contact).filter_by(is_register = False).all()
 
     # region Работа с классом Course
-    @staticmethod
+    @Tupesadillax
     def get_courses() -> List[Course]:
         """Возвращает список курсов из базы данных"""
         courses = session.query(Course).all()
         return [course for course in courses if course.is_delete == False]
 
-    @staticmethod
+    @Tupesadillax
     def get_course(id: int) -> Course:
         """Возвращает объект курса по ID"""
         return session.query(Course).filter_by(id=id).first()
 
-    @staticmethod
+    @Tupesadillax
     def create_new_course(data: Dict):
         """Добавляет новый курс в базу данных"""
         channels = []
@@ -203,7 +203,7 @@ class DataBaseFunc():
 
         session.commit()
 
-    @staticmethod
+    @Tupesadillax
     def add_channel_in_course(message, data):
         """Добавляет канал в курс"""
         ch = {}
@@ -231,7 +231,7 @@ class DataBaseFunc():
         session.add(ch_in_course)
         session.commit()
 
-    @staticmethod
+    @Tupesadillax
     def delete_channel_in_courses(id):
         ch_in_course = session.query(ChannelsInCourse).filter_by(id=id).first()
         session.delete(ch_in_course)
@@ -241,7 +241,7 @@ class DataBaseFunc():
 
     # region Работа с классом User
 
-    @staticmethod
+    @Tupesadillax
     def get_user(param) -> User:
         """Возвращает объект User из базы данных 
         Параметры: 
@@ -255,11 +255,11 @@ class DataBaseFunc():
         else:
             return None
 
-    @staticmethod
+    @Tupesadillax
     def get_user_for_phone(phone) -> User:
         return session.query(User).filter_by(phone=phone).first()
 
-    @staticmethod
+    @Tupesadillax
     def get_user_for_mail(mail) -> User:
         return session.query(User).filter_by(mail=mail).first()
 
@@ -270,16 +270,16 @@ class DataBaseFunc():
             return session.query(Contact).filter_by(mail=mail).first()
         return None
 
-    @staticmethod
+    @Tupesadillax
     def get_all_admins():
         return session.query(User).filter_by(is_admin=True).all()
 
-    @staticmethod
+    @Tupesadillax
     def get_users_with_subscribe():
         return session.query(User).all()
 
 
-    @staticmethod
+    @Tupesadillax
     async def delete_messages(user : User):
         """Удаляет ненужные сообщения пользователя."""
         for message in user.messages_for_delete:
@@ -290,7 +290,7 @@ class DataBaseFunc():
             except:
                 pass
 
-    @staticmethod
+    @Tupesadillax
     async def delete_messages_from_callback(user : User, message_id : int):
         """Удаляет все сообщения, кроме тех, с которого была нажата кнопка"""
         for message in user.messages_for_delete:
@@ -305,17 +305,17 @@ class DataBaseFunc():
     # endregion
 
     # region Работа с классом Chanell
-    @staticmethod
+    @Tupesadillax
     def get_channel(id) -> Channel:
         return session.query(Channel).filter_by(id=id).first()
 
-    @staticmethod
+    @Tupesadillax
     def create_channel(id, name):
         channel = Channel(id=id, name=name)
         session.add(channel)
         session.commit()
 
-    @staticmethod
+    @Tupesadillax
     async def create_link_invoice(channel):
         id = channel.id
         link = await bot.export_chat_invite_link(id)
@@ -326,7 +326,7 @@ class DataBaseFunc():
 
     # region Работа по учету Курсов, Истории платежей и другие методы связанные с приобретением курса пользователем
 
-    @staticmethod
+    @Tupesadillax
     def add_course_in_user(user: User, course: Course):
         """Метод добавляет оплаченный курс конкретному пользователю. """
         date = datetime.now()
@@ -337,7 +337,7 @@ class DataBaseFunc():
         session.add(purch)
         session.commit()
 
-    @staticmethod
+    @Tupesadillax
     def add_course_in_user_test(user: User, course: Course):
         """Метод добавляет оплаченный курс конкретному пользователю. """
         date = datetime.now()
@@ -347,7 +347,7 @@ class DataBaseFunc():
         session.add(purch)
         session.commit()
 
-    @staticmethod
+    @Tupesadillax
     async def delete_course_from_user(user: User, course: Course):
         """Удаляет курс у пользователя"""
         date = datetime.now()
@@ -367,7 +367,7 @@ class DataBaseFunc():
             user.subscribe_end = True
             DataBaseFunc.commit()
 
-    @staticmethod
+    @Tupesadillax
     def add_time_in_course(user: User, course: Course, time: int) -> None:
         """Добавляет время в курс пользователю
 
@@ -384,7 +384,7 @@ class DataBaseFunc():
             session.commit()
 
 
-    @staticmethod
+    @Tupesadillax
     async def delete_user_in_channels_from_course(user : User, course : Course):
         for channel in course.channels:
             try:
@@ -394,7 +394,7 @@ class DataBaseFunc():
             except:
                 pass
 
-    @staticmethod
+    @Tupesadillax
     async def delete_time_in_course(user: User, course: Course, time: int) -> None:
         """Убавляет время в курсе пользователю
 
@@ -419,7 +419,7 @@ class DataBaseFunc():
 
 
 
-    @staticmethod
+    @Tupesadillax
     def get_current_subscribe(user: User) -> PurchasedSubscription:
         """Метод возвращает текущую активную подписку пользователя."""
         purhs = session.query(PurchasedSubscription).filter_by(
@@ -431,7 +431,7 @@ class DataBaseFunc():
             return purh
         return None
 
-    @staticmethod
+    @Tupesadillax
     def get_user_subscribes(user: User) -> PurchasedSubscription:
         """ Метод возвращает все активные подписки пользователя"""
         purhs = session.query(PurchasedSubscription).filter_by(
