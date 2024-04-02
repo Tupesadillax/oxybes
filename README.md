@@ -1,2 +1,2 @@
 # lanamilana_bot_telegram
-Бот для контроля подписки в закрытый телеграм-канал.
+Bot para monitorear suscripciones a un canal cerrado de Telegram. del Peru
